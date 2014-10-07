@@ -1,0 +1,6 @@
+--joke--
++title + string
++body - string
++likes - int
++comments - {username, date, text}[] 
++tags - string[]

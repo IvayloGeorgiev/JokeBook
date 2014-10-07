@@ -10,9 +10,11 @@ mongoose.connect(config.development.db);
 User.seedInitialUsers();
 
 var joke = {
-    user: 'pesho',
-    title: 'The very first joke',
-    body: 'Ne sam pesho'
+    body: {
+        user: 'pesho',
+        title: 'The very first joke',
+        body: 'Ne sam pesho'
+    }
 };
 
 jokesController.createJoke(joke,

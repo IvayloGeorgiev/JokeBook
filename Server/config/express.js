@@ -1,3 +1,5 @@
+'use strict';
+
 var express = require('express'),
     stylus = require('stylus'),
     bodyParser = require('body-parser'),
@@ -10,6 +12,7 @@ module.exports = function(app, config) {
     app.set('views', config.rootPath + '/Server/views');
     app.use(cookieParser());
     app.use(bodyParser.json());
+    app.use(bodyParser.urlencoded({extended: true}));
     app.use(session({secret: 'magic unicorns'}));
     app.use(stylus.middleware(
         {
