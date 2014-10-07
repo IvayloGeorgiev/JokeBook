@@ -1,0 +1,17 @@
+{
+  "name": "JokeBook",
+  "version": "0.0.1",
+  "authors": [
+    "Stoyan Stoyanov <sss17@mail.com>"
+  ],
+  "description": "JokeBook client",
+  "main": "server.js",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
