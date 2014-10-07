@@ -2,7 +2,7 @@
 
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-var Comment = require('server/models/Comment.js');
+var Comment = require('../models/Comment.js');
 
 // Todo: validation and user ref
 var jokeSchema = new mongoose.Schema({
