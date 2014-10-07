@@ -44,7 +44,59 @@ function getJokes(req, res) {
         });
 }
 
-module.exports = {
-    createJoke: createJoke,
-    getJokes: getJokes
-};
+function updateJoke(req, res) {
+    var id = req.param('id');
+    if (!id) {
+        res.status(400).send('Bad request');
+        return;
+    }
+
+    Joke.findOne({_id: id},
+        function (err, joke) {
+            if (err) {
+                res.status(404).send('Joke with this id does not exist');
+                return;
+            }
+
+            joke.title = req.body.title || joke.title;
+            joke.body = req.body.body || joke.body;
+            joke.tags = req.body.tags || joke.tags;
+            joke.save(function (err, result) {
+                    if (err) {
+                        res.status(500).send(err.message);
+                    }
+                    else {
+                        res.send(result);
+                    }
+                }
+            );
+        }
+    );
+}
+
+function deleteJoke(req, res) {
+    var id = req.param('id');
+    if (!id) {
+        res.status(400).send('Bad request');
+        return;
+    }
+
+    Joke.remove({_id: id},
+        function (err, joke) {
+            if (err) {
+                res.status(404).send('Joke with this id does not exist');
+                return;
+            }
+            else {
+                res.send();
+            }
+        }
+    );
+}
+
+    module.exports = {
+        createJoke: createJoke,
+        getJokes: getJokes,
+        updateJoke: updateJoke,
+        deleteJoke: deleteJoke
+    };
