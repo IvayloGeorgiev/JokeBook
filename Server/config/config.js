@@ -7,9 +7,9 @@ module.exports = {
         db: 'mongodb://localhost/jokebook',
         port: process.env.PORT || 3030
     },
-//    production: {
-//        rootPath: rootPath,
-//        db: 'mongodb://admin:dsadsadsadsadsadsadsaewerwewtewfdfsgfsdfdsfefdsgfdhtrytett@ds027328.mongolab.com:27328/telerikacademycourses',
-//        port: process.env.PORT || 3030
-//    }
+    production: {
+        rootPath: rootPath,
+        db: 'mongodb://admin:dsadsadsadsadsadsadsaewerwewtewfdfsgfsdfdsfefdsgfdhtrytett@ds027328.mongolab.com:27328/telerikacademycourses',
+        port: process.env.PORT || 3030
+    }
 }

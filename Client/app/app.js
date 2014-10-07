@@ -18,20 +18,20 @@ app.config(function($routeProvider, $locationProvider) {
 
     $routeProvider
         .when('/', {
-            templateUrl: '/partials/main/home',
+            templateUrl: '/partials/views/home',
             controller: 'MainCtrl'
         })
         .when('/signup', {
-            templateUrl: '/partials/account/signup',
+            templateUrl: '/partials/views/signup',
             controller: 'SignUpCtrl'
         })
         .when('/profile', {
-            templateUrl: '/partials/account/profile',
+            templateUrl: '/partials/views/profile',
             controller: 'ProfileCtrl',
             resolve: routeUserChecks.authenticated
         })
         .when('/admin/users', {
-            templateUrl: '/partials/admin/users-list',
+            templateUrl: '/partials/views/users-list',
             controller: 'UserListCtrl',
             resolve: routeUserChecks.adminRole
         })

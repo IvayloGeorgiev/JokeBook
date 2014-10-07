@@ -7,13 +7,13 @@ var express = require('express'),
 
 module.exports = function(app, config) {
     app.set('view engine', 'jade');
-    app.set('views', config.rootPath + '/server/views');
+    app.set('views', config.rootPath + '/Server/views');
     app.use(cookieParser());
-    app.use(bodyParser());
+    app.use(bodyParser.json());
     app.use(session({secret: 'magic unicorns'}));
     app.use(stylus.middleware(
         {
-            src: config.rootPath + '/public',
+            src: config.rootPath + '/Client',
             compile: function (str, path) {
                 return stylus(str).set('filename', path);
             }
@@ -21,5 +21,5 @@ module.exports = function(app, config) {
     ));
     app.use(passport.initialize());
     app.use(passport.session());
-    app.use(express.static(config.rootPath + '/public'));
+    app.use(express.static(config.rootPath + '/Client'));
 };
