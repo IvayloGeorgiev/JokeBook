@@ -21,6 +21,14 @@ app.config(function($routeProvider, $locationProvider) {
             templateUrl: '/partials/views/home',
             controller: 'MainCtrl'
         })
+        .when('/joke/:id',{
+            templateUrl:'/partials/views/joke-details',
+            controller:'JokeDetailsCtrl'
+        })
+        .when('/jokes',{
+            templateUrl:'/partials/views/jokes',
+            controller:'JokesCtrl'
+        })
         .when('/signup', {
             templateUrl: '/partials/views/signup',
             controller: 'SignUpCtrl'

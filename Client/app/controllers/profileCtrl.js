@@ -10,5 +10,7 @@ app.controller('ProfileCtrl', function($scope, $location, auth, identity) {
             $scope.lastName = user.lastName;
             $location.path('/');
         });
-    }
+    };
+
+    // to list current user jokes here
 });
