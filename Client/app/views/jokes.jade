@@ -7,12 +7,14 @@
                 tr
                     td Joke Title
                     td Joke Author
+                    td Date Created
                     td Likes
             tbody
-                //tr(ng-repeat="joke in jokes")
-                //    td {{ joke.title }}
-                //    td {{ joke.author }}
-                //    td {{ joke.likes }}
+                tr(ng-repeat="joke in jokes")
+                    td {{ joke.title }}
+                    td {{ joke.user }}
+                    td {{ joke.date | date: 'medium'}}
+                    td {{ joke.likes }}
 
 
 

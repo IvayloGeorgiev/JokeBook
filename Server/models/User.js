@@ -1,5 +1,6 @@
 var mongoose = require('mongoose'),
-    encryption = require('../utilities/encryption');
+    encryption = require('../utilities/encryption'),
+    Joke = require('../models/Joke.js');
 
 var userSchema = mongoose.Schema({
     username: { type: String, require: '{PATH} is required', unique: true },
@@ -7,7 +8,9 @@ var userSchema = mongoose.Schema({
     lastName: { type: String, require: '{PATH} is required' },
     salt: String,
     hashPass: String,
+    jokes: [Joke],
     roles: [String]
+
 });
 
 userSchema.method({

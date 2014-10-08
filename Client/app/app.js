@@ -38,6 +38,11 @@ app.config(function($routeProvider, $locationProvider) {
             controller: 'ProfileCtrl',
             resolve: routeUserChecks.authenticated
         })
+        .when('/create-joke',{
+            templateUrl:'/partials/views/create-joke',
+            controller:'CreateJokeCtrl',
+            resolve: routeUserChecks.authenticated
+        })
         .when('/admin/users', {
             templateUrl: '/partials/views/users-list',
             controller: 'UserListCtrl',

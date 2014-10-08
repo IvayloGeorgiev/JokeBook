@@ -1,5 +1,12 @@
 .container
-    table.table
-        tr(ng-repeat="user in users")
-            td {{ user.firstName }}
-            td {{ user.lastName }}
+    table.table.table-striped
+        thead
+            tr
+                td First Name
+                td Last Name
+                td Jokes Count
+        tbody
+            tr(ng-repeat="user in users")
+                td {{ user.firstName }}
+                td {{ user.lastName }}
+                td {{ user.jokes.length}}
