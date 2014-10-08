@@ -12,7 +12,6 @@ module.exports = function (app) {
     app.post('/login', auth.login);
     app.post('/logout', auth.logout);
 
-    app.get('/api/users/:id', controllers.users.getUserById);
     app.route('/api/users')
         .get(auth.isInRole('admin'), controllers.users.getAllUsers)
         .post(controllers.users.createUser)
