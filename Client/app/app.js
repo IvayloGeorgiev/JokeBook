@@ -48,6 +48,11 @@ app.config(function($routeProvider, $locationProvider) {
             controller: 'UserListCtrl',
             resolve: routeUserChecks.adminRole
         })
+        .when('/user-details/:id',{
+            templateUrl:'/partials/views/user-details',
+            controller:'UserDetailsCtrl',
+            resolve:routeUserChecks.adminRole
+        })
 });
 
 app.run(function($rootScope, $location) {
