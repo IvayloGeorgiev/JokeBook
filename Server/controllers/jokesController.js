@@ -43,6 +43,26 @@ function getJokes(req, res) {
     if (query.title) {
         result = result.where('title').regex(new RegExp(query.title, 'i'));
     }
+    if (query.tag) {
+        result = result.where('tags').in([query.tag]);
+    }
+    if (query.sort) {
+        var orderPrefix = '-';
+        if(query.orderBy && query.orderBy === 'asc'){
+            orderPrefix = '';
+        }
+        switch (query.sort) {
+            case 'likes':
+                result = result.sort(orderPrefix + 'likes');
+                break;
+            case 'date':
+                result = result.sort(orderPrefix + 'date');
+                break;
+            case 'user':
+                result = result.sort(orderPrefix + 'user');
+                break;
+        }
+    }
 
     result.select({})
         .skip(JOKES_PER_PAGE * currentPage)
