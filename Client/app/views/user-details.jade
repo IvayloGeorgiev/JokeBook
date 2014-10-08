@@ -1,0 +1,40 @@
+.container
+    .well
+        h2 {{user.firstName+' '+user.lastName}}
+
+        form.form-horizontal(name="profileForm")
+            fieldset
+                legend Change Settings
+                .form-group
+                    label.col-md-2.control-label(for="first-name") First Name
+                    .col-md-10
+                        input.form-control(type="text", placeholder="First Name", ng-model="user.firstName")
+                .form-group
+                    label.col-md-2.control-label(for="last-name") Last Name
+                    .col-md-10
+                        input.form-control(type="text", placeholder="Last Name", ng-model="user.lastName")
+                .form-group
+                    .col-md-6
+                        input(type="text" class="form-control validity" id="image" placeholder="Avatar URL"   ng-model="user.avatar")
+                    .col-md-6.image-container
+                        img(width="250" heigth="250" ng-src="{{user.avatar}}" src="")
+                .pull-right
+                    button.btn.btn-primary(ng-click="update(user)", ng-disabled="profileForm.$invalid") Update
+                    a.btn.btn-primary(href="#/") Cancel
+
+        fieldset
+            legend Your Jokes
+            table.table.table-striped
+                thead
+                    tr
+                        td Joke Title
+                        td Likes
+                tbody
+                    //tr(ng-repeat="joke in yourJokes")
+                    //    td {{ joke.title }}
+                    //    td {{ joke.likes }}
+
+
+
+
+

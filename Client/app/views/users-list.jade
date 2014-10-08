@@ -10,7 +10,9 @@
                 td Last Name
                 td Jokes Count
         tbody
-            tr(ng-repeat="user in users")
+            tr(ng-repeat="user in users" )
                 td {{ user.firstName }}
                 td {{ user.lastName }}
                 td {{ user.jokes.length}}
+                td
+                    a.btn.btn-primary.btn-sm(href="#/user-details/{{user._id}}") Edit
