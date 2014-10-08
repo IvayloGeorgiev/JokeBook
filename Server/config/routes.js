@@ -3,6 +3,7 @@
 var auth = require('./auth');
 var controllers = require('../controllers');
 var cors = require('express-cors');
+var tags = ["army", "blonde", "children", "drunk", "gender", "general", "lawyer", "politics", "racist", "religion", "science", "sports"];
 
 module.exports = function (app) {
     // Enable CORS
@@ -18,6 +19,11 @@ module.exports = function (app) {
 
     app.get('/partials/:partialArea/:partialName', function (req, res) {
         res.render('../../Client/app/' + req.params.partialArea + '/' + req.params.partialName);
+    });
+
+    app.get('/tags', function (req, res) {
+        res.send(tags);
+        res.end();
     });
 
     // Jokes api
