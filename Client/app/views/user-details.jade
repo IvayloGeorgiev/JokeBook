@@ -14,6 +14,13 @@
                     .col-md-10
                         input.form-control(type="text", placeholder="Last Name", ng-model="user.lastName")
                 .form-group
+                    label.col-md-2.control-label(for="user-type") User Type
+                    .col-md-10
+                        select(ng-model="user.roles[0]")
+                            option admin
+                            option user
+
+                .form-group
                     .col-md-6
                         input(type="text" class="form-control validity" id="image" placeholder="Avatar URL"   ng-model="user.avatar")
                     .col-md-6.image-container
@@ -23,7 +30,7 @@
                     a.btn.btn-primary(href="#/") Cancel
 
         fieldset
-            legend Your Jokes
+            legend {{user.firstName}}'s Jokes
             table.table.table-striped
                 thead
                     tr
