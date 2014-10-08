@@ -38,8 +38,13 @@ function getJokes(req, res) {
     var query = url.parse(req.url, true).query;
     var currentPage = query.page || 0;
 
-    Joke.find()
-        .select({})
+    var result = Joke.find();
+
+    if (query.title) {
+        result = result.where('title').regex(new RegExp(query.title, 'i'));
+    }
+
+    result.select({})
         .skip(JOKES_PER_PAGE * currentPage)
         .limit(JOKES_PER_PAGE)
         .exec(function (err, jokes) {
