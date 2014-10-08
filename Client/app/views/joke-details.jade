@@ -1,2 +1,33 @@
 // list joke details
+.container(ng-controller="JokeDetailsCtrl")
+    .jumbotron
+        .row
+            .col-md-10
+                h3 {{joke.title}}
+            <!----->
+            .col-md-2.vcenter
+                | Likes: {{joke.likes}}
 
+
+        .row
+            .col-md-11.col-md-offset-1 {{joke.body}}
+
+        .row
+            .col-md-6
+                ul.tag-list
+                    li(ng-repeat="tag in joke.tags")
+                        a(href="#/tags/{{tag}}") {{tag}}
+
+            .col-md-6.pull-right
+                | posted by
+                a(href="#/users/{{joke.user._id}}") {{joke.user.username}} 
+                | on {{joke.date}}
+
+    h2 Comments
+
+    .row(ng-repeat="comment in joke.comments")
+        .col-md-12
+            strong
+                | {{comment.user.username}} on {{comment.date}}
+        .col-md-11.col-md-offset-1
+            | {{comment.text}}

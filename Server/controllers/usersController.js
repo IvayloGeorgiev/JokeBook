@@ -7,7 +7,7 @@ module.exports = {
         newUserData.salt = encryption.generateSalt();
         newUserData.hashPass = encryption.generateHashedPassword(newUserData.salt, newUserData.password);
         newUserData.roles = ['user'];
-        newUserData.jokes=[0];
+        newUserData.jokes=[];
 
         User.create(newUserData, function (err, user) {
             if (err) {
