@@ -28,6 +28,7 @@ module.exports = function (app) {
 
     // Jokes api
     app.get('/jokes', controllers.jokes.getJokes);
+    app.get('/jokes/:id', controllers.jokes.getJokeById);
     app.post('/jokes', controllers.jokes.createJoke);
     app.put('/jokes/:id', controllers.jokes.updateJoke);
     app.delete('/jokes/:id', controllers.jokes.deleteJoke);
