@@ -2,7 +2,7 @@
 
 var mongoose = require('mongoose');
 var config = require('./config/config');
-// var Joke = require('./models/Joke');
+var Joke = require('./models/Joke');
 var User = require('./models/User');
 var jokesController = require('./controllers/jokesController');
 

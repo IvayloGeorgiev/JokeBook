@@ -11,7 +11,7 @@ var userSchema = mongoose.Schema({
 });
 
 userSchema.method({
-    authenticate: function(password) {
+    authenticate: function (password) {
         if (encryption.generateHashedPassword(this.salt, password) === this.hashPass) {
             return true;
         }
@@ -19,24 +19,33 @@ userSchema.method({
             return false;
         }
     }
-})
+});
 
 var User = mongoose.model('User', userSchema);
 
-module.exports.seedInitialUsers = function() {
-    User.find({}).exec(function(err, collection) {
-        if (err) {
-            console.log('Cannot find users: ' + err);
-            return;
-        }
+module.exports = {
+    seedInitialUsers: function () {
+        User.find({}).exec(function (err, allUsers) {
+            if (err) {
+                console.log('Cannot find users: ' + err);
+                return;
+            }
 
-        if (collection.length === 0) {
-            var salt;
-            var hashedPwd;
+            if (allUsers.length === 0) {
+                var salt,
+                    hashedPwd;
 
-            salt = encryption.generateSalt();
-            hashedPwd = encryption.generateHashedPassword(salt, '123456');
-            User.create({username: 'pesho', firstName: 'Peter', lastName: 'Petrov', salt: salt, hashPass: hashedPwd, roles: ['admin']});
-        }
-    });
+                salt = encryption.generateSalt();
+                hashedPwd = encryption.generateHashedPassword(salt, '123456');
+                User.create({
+                    username: 'admin',
+                    firstName: 'App',
+                    lastName: 'Owner',
+                    salt: salt,
+                    hashPass: hashedPwd,
+                    roles: ['admin']
+                });
+            }
+        });
+    }
 };
