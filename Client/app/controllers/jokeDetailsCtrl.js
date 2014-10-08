@@ -6,6 +6,7 @@ app.controller('JokeDetailsCtrl', function($scope, $location, $routeParams, Joke
 //    });
 
     $scope.joke = {
+        _id:$routeParams.id,
         user: {
             username: "Pencho",
             _id: "kkkjka"
