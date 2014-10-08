@@ -5,7 +5,7 @@ var url = require('url');
 var Joke = require('../models/Joke');
 var Comment = require('../models/Comment');
 
-var jokesPerPage = 10;
+var JOKES_PER_PAGE = 10;
 
 function createJoke(req, res) {
     // Todo: get user id
@@ -33,16 +33,15 @@ function createJoke(req, res) {
     });
 }
 
-// Todo: paging, filtering, map user id to user name
+// Todo: filtering, map user id to user name
 function getJokes(req, res) {
     var query = url.parse(req.url, true).query;
     var currentPage = query.page || 0;
 
     Joke.find()
-        //.select('-__v')
         .select({})
-        .skip(jokesPerPage * currentPage)
-        .limit(jokesPerPage)
+        .skip(JOKES_PER_PAGE * currentPage)
+        .limit(JOKES_PER_PAGE)
         .exec(function (err, jokes) {
             if (err) {
                 res.status(500).send(err.message);

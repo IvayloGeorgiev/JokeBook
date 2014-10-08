@@ -7,8 +7,8 @@ module.exports = {
         newUserData.salt = encryption.generateSalt();
         newUserData.hashPass = encryption.generateHashedPassword(newUserData.salt, newUserData.password);
         newUserData.roles = ['user'];
-        newUserData.avatar='http://www.readingfc.co.uk/images/common/bg_player_profile_default_big.png';
-        newUserData.jokes=[];
+        newUserData.avatar = 'http://www.readingfc.co.uk/images/common/bg_player_profile_default_big.png';
+        newUserData.jokes = [];
 
         User.create(newUserData, function (err, user) {
             if (err) {
@@ -54,5 +54,22 @@ module.exports = {
 
             res.send(collection);
         })
+    },
+    getUserById: function (req, res) {
+        var id = req.param('id');
+        if (!id) {
+            res.status(400).send('Bad request');
+            return;
+        }
+
+        User.findOne({_id: id},
+            function (err, user) {
+                if (err) {
+                    res.status(404).send('User with this id does not exist');
+                    return;
+                }
+
+                res.send(user);
+            });
     }
 };
