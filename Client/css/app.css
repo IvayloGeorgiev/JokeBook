@@ -21,3 +21,27 @@ footer p {
   border-top: 1px solid #808080;
   padding-top: 10px;
 }
+.tag-list {
+  list-style-type: none;
+}
+.tag-list > li {
+  display: inline-block;
+}
+.likes {
+  text-align: right;
+}
+.negative {
+  color: #f00;
+}
+.positive {
+  color: #008000;
+}
+.buffer {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.comment-offset {
+  margin-top: 10px;
+  margin-left: 10px;
+  padding-bottom: 10px;
+}

@@ -1,33 +1,35 @@
 // list joke details
 .container(ng-controller="JokeDetailsCtrl")
-    .jumbotron
-        .row
-            .col-md-10
+
+    .col-md-8
+        .col-md-12.buffer
                 h3 {{joke.title}}
-            <!----->
-            .col-md-2.vcenter
-                | Likes: {{joke.likes}}
 
+        .col-md-12.likes.buffer(ng-class="joke.likes >= 0 ? 'positive' : 'negative' ") Likes: {{joke.likes}}
 
-        .row
+        .row.buffer
             .col-md-11.col-md-offset-1 {{joke.body}}
 
-        .row
+        .row.buffer
             .col-md-6
                 ul.tag-list
+                    li Tags:&nbsp
                     li(ng-repeat="tag in joke.tags")
                         a(href="#/tags/{{tag}}") {{tag}}
+                        | &nbsp
 
             .col-md-6.pull-right
-                | posted by
-                a(href="#/users/{{joke.user._id}}") {{joke.user.username}} 
-                | on {{joke.date}}
+                | posted by &nbsp
+                a(href="#/users/{{joke.user._id}}") {{joke.user.username}}
+                | &nbspon {{joke.date | date:'MMM dd, yyyy h:mm a'}}
 
-    h2 Comments
+        a.btn.btn-primary(href="#/joke/{{joke._id}}/edit")(ng-show="canEdit") Edit
 
-    .row(ng-repeat="comment in joke.comments")
-        .col-md-12
-            strong
-                | {{comment.user.username}} on {{comment.date}}
-        .col-md-11.col-md-offset-1
-            | {{comment.text}}
+        h2.buffer Comments
+
+        .col-md-12.well(ng-repeat="comment in joke.comments")
+            .col-md-12
+                a(href="#/users/{{comment.user._id}}") {{comment.user.username}}
+                | &nbspon {{comment.date | date:'MMM dd, yyyy h:mm a'}}
+            .col-md-11.comment-offset
+                | {{comment.text}}
