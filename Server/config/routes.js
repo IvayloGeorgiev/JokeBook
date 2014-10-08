@@ -12,11 +12,12 @@ module.exports = function (app) {
     app.post('/login', auth.login);
     app.post('/logout', auth.logout);
 
+    app.get('/api/users/:id', controllers.users.getUserById);
     app.route('/api/users')
         .get(auth.isInRole('admin'), controllers.users.getAllUsers)
         .post(controllers.users.createUser)
         .put(auth.isAuthenticated, controllers.users.updateUser);
-    app.get('/api/users/:id', auth.isInRole('admin'), controllers.users.getUserById);
+
 
     app.get('/partials/:partialArea/:partialName', function (req, res) {
         res.render('../../Client/app/' + req.params.partialArea + '/' + req.params.partialName);
