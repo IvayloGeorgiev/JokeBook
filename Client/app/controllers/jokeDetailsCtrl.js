@@ -1,5 +1,9 @@
-app.controller('JokeDetailsCtrl', function($scope,$routeParams, $location,  auth, identity) {
-//    $scope.joke = JokeResource()
+app.controller('JokeDetailsCtrl', function($scope, $location, $routeParams, JokesResource, auth, identity) {
+//    JokesResource.get({_id:$routeParams.id}, function(joke){
+//        console.log(joke);
+//    }, function (error){
+//        console.log(error);
+//    });
 
     $scope.joke = {
         _id:$routeParams.id,
