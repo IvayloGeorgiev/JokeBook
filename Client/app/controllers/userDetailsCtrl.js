@@ -1,8 +1,7 @@
 app.controller('UserDetailsCtrl', function($scope,$routeParams,auth, notifier, UsersResource) {
 
-   //not working... don't know why
     var currentUser= UsersResource.get({id:$routeParams.id.toString()}, function () {
-       $scope.currentUser = currentUser;
+       $scope.user = currentUser;
     });
 
 

@@ -1,6 +1,6 @@
 .container
     .well
-        h2 {{currentUser.firstName+' '+currentUser.lastName}}
+        h2 {{user.firstName+' '+user.lastName}}
 
         form.form-horizontal(name="profileForm")
             fieldset
@@ -30,7 +30,7 @@
                     a.btn.btn-primary(href="#/") Cancel
 
         fieldset
-            legend {{currentUser.firstName}}'s Jokes
+            legend {{user.firstName}}'s Jokes
             table.table.table-striped
                 thead
                     tr
