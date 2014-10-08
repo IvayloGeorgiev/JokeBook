@@ -16,6 +16,7 @@ module.exports = function (app) {
         .get(auth.isInRole('admin'), controllers.users.getAllUsers)
         .post(controllers.users.createUser)
         .put(auth.isAuthenticated, controllers.users.updateUser);
+
     app.get('/api/users/:id', controllers.users.getUserById);
 
     app.get('/partials/:partialArea/:partialName', function (req, res) {
