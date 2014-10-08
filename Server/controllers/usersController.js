@@ -7,6 +7,7 @@ module.exports = {
         newUserData.salt = encryption.generateSalt();
         newUserData.hashPass = encryption.generateHashedPassword(newUserData.salt, newUserData.password);
         newUserData.roles = ['user'];
+        newUserData.avatar='http://www.readingfc.co.uk/images/common/bg_player_profile_default_big.png';
         newUserData.jokes=[];
 
         User.create(newUserData, function (err, user) {

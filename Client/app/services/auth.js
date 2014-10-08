@@ -28,6 +28,20 @@ app.factory('auth', function($http, $q, identity, UsersResource) {
 
             return deferred.promise;
         },
+        uploadAvatar:function(user) {
+            var deferred = $q.defer();
+
+            var updatedUser = new UsersResource(user);
+            updatedUser._id = identity.currentUser._id;
+            updatedUser.$update().then(function() {
+                identity.currentUser.avatar = updatedUser.avatar;
+                deferred.resolve();
+            }, function(response) {
+                deferred.reject(response);
+            });
+
+            return deferred.promise;
+        },
         login: function(user){
             var deferred = $q.defer();
 

@@ -16,6 +16,16 @@
                     a.btn.btn-primary(href="#/") Cancel
         br
 
+        form.form-horizontal(name="avatarForm")
+            fieldset
+                legend Upload Avatar
+                    .form-group
+                        .col-md-6
+                            input(type="text" class="form-control validity" id="image" placeholder="Avatar URL" required  ng-model="user.avatar")
+                            button.btn.btn-primary(ng-click="upload(user)", ng-disabled="avatarForm.$invalid") Save
+                        .col-md-6.image-container
+                            img(width="250" heigth="250" ng-src="{{user.avatar}}" src="")
+
         .pull-right
             a.btn.btn-primary.btn-xs(href="#/create-joke") Create Joke
         fieldset

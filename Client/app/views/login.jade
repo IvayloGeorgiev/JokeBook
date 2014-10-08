@@ -9,7 +9,8 @@
     ul.nav.navbar-nav.navbar-right(ng-show="identity.isAuthenticated()")
         li.dropdown
             a.dropdown-toggle(href="", data-toggle="dropdown")
-                | {{ identity.currentUser.firstName + ' ' + identity.currentUser.lastName }}
+                img(width="20" heigth="20"  src="{{identity.currentUser.avatar}}")
+                |   {{   identity.currentUser.firstName + ' ' + identity.currentUser.lastName }}
                 span.caret
             ul.dropdown-menu
                 li(ng-show="identity.currentUser.isAdmin()")
