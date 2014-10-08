@@ -28,6 +28,9 @@ module.exports = function (app) {
         res.end();
     });
 
+    // Comment api
+    app.post('/jokes/:id/comment', controllers.comments.createComment);
+
     // Jokes api
     app.get('/jokes', controllers.jokes.getJokes);
     app.get('/jokes/:id', controllers.jokes.getJokeById);

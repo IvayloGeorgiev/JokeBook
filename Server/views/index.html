@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>JokeBook</title>
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="/lib/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/lib/toastr/toastr.css">
+    <link rel="stylesheet" href="/css/app.css">
+  </head>
+  <body ng-app="app">
+    <header class="navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header"><a href="#/" class="navbar-brand">JokeBook</a></div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="#/jokes">Jokes</a></li>
+          </ul>
+          <div ng-include="'partials/views/login'"></div>
+        </div>
+      </div>
+    </header>
+    <section>
+      <div ng-view></div>
+    </section>
+    <footer>
+      <p class="text-center">Team Circe &copy; Telerik Academy 2014</p>
+    </footer>
+    <script type="text/javascript" src="/lib/jquery/dist/jquery.js"></script>
+    <script type="text/javascript" src="/lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script type="text/javascript" src="/lib/toastr/toastr.js"></script>
+    <script type="text/javascript" src="/lib/angular/angular.js"></script>
+    <script type="text/javascript" src="/lib/angular-resource/angular-resource.js"></script>
+    <script type="text/javascript" src="/lib/angular-route/angular-route.js"></script>
+    <script type="text/javascript" src="/app/app.js"></script>
+    <script type="text/javascript" src="/app/controllers/mainCtrl.js"></script>
+    <script type="text/javascript" src="/app/controllers/loginCtrl.js"></script>
+    <script type="text/javascript" src="/app/controllers/signUpCtrl.js"></script>
+    <script type="text/javascript" src="/app/controllers/profileCtrl.js"></script>
+    <script type="text/javascript" src="/app/controllers/userListCtrl.js"></script>
+    <script type="text/javascript" src="/app/controllers/jokesCtrl.js"></script>
+    <script type="text/javascript" src="/app/controllers/jokeDetailsCtrl.js"></script>
+    <script type="text/javascript" src="/app/controllers/createJokeCtrl.js"></script>
+    <script type="text/javascript" src="/app/controllers/userDetailsCtrl.js"></script>
+    <script type="text/javascript" src="/app/services/identity.js"></script>
+    <script type="text/javascript" src="/app/services/auth.js"></script>
+    <script type="text/javascript" src="/app/services/usersResource.js"></script>
+    <script type="text/javascript" src="/app/services/jokesResource.js"></script>
+    <script type="text/javascript" src="/app/services/jokes.js"></script>
+    <script type="text/javascript" src="/app/services/notifier.js"></script>
+  </body>
+</html>

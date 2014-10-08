@@ -10,7 +10,7 @@ var jokeSchema = new mongoose.Schema({
     title: String,
     body: String,
     likes: Number,
-    comments: [Comment],
+    comments: [Comment.schema],
     tags: [String],
     date: Date
 });
