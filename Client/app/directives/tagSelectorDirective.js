@@ -5,5 +5,6 @@ app.directive('tagSelector', function() {
         restrict: 'A',
         templateUrl: 'partials/views/directives/tag-selector',
         replace: true
+
     }
 });
