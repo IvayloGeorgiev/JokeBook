@@ -2,6 +2,31 @@
     .jumbotron
         h2 Jokes
 
+        .pull-right
+            a.btn.btn-primary(href="#/create-joke" ng-hide="identity.isAuthenticated()") Create Joke
+
+        .form-group.col-lg-5
+            label.col-md-2.control-label(for="first-name") Sort By
+                select(ng-model="request.sort")
+                    option likes
+                    option date
+                    option user
+        .form-group.col-lg-5
+            label.col-md-2.control-label(for="first-name") Order Type
+                select(ng-model="request.orderBy")
+                    option() asc
+                    option desc
+
+        .row
+            .col-md-offset-8.col-md-1
+                button.btn.btn-info.btn-xs(ng-click="previousPage()" ng-disabled="request.page == 0") &lt;&lt;
+            .col-md-2
+                input.form-comtrol(type="text" ng-model="request.page" value="0")
+            .col-md-1
+                button.btn.btn-info.btn-xs.pull-right(ng-click="nextPage()") &gt;&gt;
+
+        button.btn.btn-info.pull-left(ng-click="filter(request)") Sort
+
         table.table.table-striped
             thead
                 tr
