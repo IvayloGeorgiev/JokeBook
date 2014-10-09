@@ -17,7 +17,7 @@
                 tr(ng-repeat="joke in jokes")
                     td {{ joke.title }}
                     td
-                        a(href="#/user-details/{{joke.user._id}}"){{ joke.user.username }}
+                    a(href="#/user-details/{{joke.user._id}}") {{ joke.user.username }}
                     td {{ joke.likes }}
                     td
                         a.btn.btn-primary.btn-xs(href="#/joke/{{joke._id}}") View

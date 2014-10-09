@@ -1,4 +1,4 @@
-app.factory('jokes', function($scope,$http, $q,  JokesResource) {
+app.factory('jokes', function($http, $q,  JokesResource) {
     return{
         create: function(joke) {
             var deferred = $q.defer();
