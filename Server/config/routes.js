@@ -17,7 +17,7 @@ module.exports = function (app) {
         .post(controllers.users.createUser)
         .put(auth.isAuthenticated, controllers.users.updateUser);
 
-    app.get('/api/users/:id', controllers.users.getUserById);
+    app.get('/api/users/:id', auth.isAuthenticated, controllers.users.getUserById);
 
     app.get('/partials/:partialArea/:partialName', function (req, res) {
         res.render('../../Client/app/' + req.params.partialArea + '/' + req.params.partialName);
@@ -29,14 +29,14 @@ module.exports = function (app) {
     });
 
     // Comment api
-    app.post('/jokes/:id/comment', controllers.comments.createComment);
+    app.post('/jokes/:id/comment', auth.isAuthenticated, controllers.comments.createComment);
 
     // Jokes api
     app.get('/jokes', controllers.jokes.getJokes);
     app.get('/jokes/:id', controllers.jokes.getJokeById);
-    app.post('/jokes', controllers.jokes.createJoke);
-    app.put('/jokes/:id', controllers.jokes.updateJoke);
-    app.delete('/jokes/:id', controllers.jokes.deleteJoke);
+    app.post('/jokes', auth.isAuthenticated, controllers.jokes.createJoke);
+    app.put('/jokes/:id', auth.isAuthenticated, controllers.jokes.updateJoke);
+    app.delete('/jokes/:id', auth.isAuthenticated, controllers.jokes.deleteJoke);
 
     app.get('/api/*', function (req, res) {
         res.status(404);
