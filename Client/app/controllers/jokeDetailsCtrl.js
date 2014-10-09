@@ -1,9 +1,8 @@
-app.controller('JokeDetailsCtrl', function($scope, $location, $routeParams, $route, JokesResource, comments, auth, identity, notifier) {
+app.controller('JokeDetailsCtrl',["$scope", "$location", "$routeParams", "$route", "JokesResource", "comments", "auth", "identity", "notifier", function($scope, $location, $routeParams, $route, JokesResource, comments, auth, identity, notifier) {
     $scope.identity = identity;
     var joke = JokesResource.get({id:$routeParams.id.toString()}, function() {
         $scope.joke = joke;
-        console.log(identity.currentUser._id === $scope.joke.user._id);
-        console.log(auth.isAuthorizedForRole('admin') === true);
+
         if (identity.currentUser){
             $scope.canEdit = ((auth.isAuthorizedForRole('admin') === true) || (identity.currentUser._id === $scope.joke.user._id));
         }
@@ -51,4 +50,4 @@ app.controller('JokeDetailsCtrl', function($scope, $location, $routeParams, $rou
             notifier.error("Comment field must not be empty!");
         }
     }
-});
+}]);
