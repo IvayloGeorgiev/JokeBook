@@ -1,4 +1,5 @@
 app.controller('ProfileCtrl', function($scope, $location, auth,JokesResource, identity,notifier) {
+    $scope.identity=identity;
     $scope.user = {
         firstName: identity.currentUser.firstName,
         lastName: identity.currentUser.lastName,
@@ -22,7 +23,6 @@ app.controller('ProfileCtrl', function($scope, $location, auth,JokesResource, id
 
     };
 
-    var a =JokesResource.query()
-    console.log(a);
+    $scope.yourJokes =JokesResource.query();
 
 });
