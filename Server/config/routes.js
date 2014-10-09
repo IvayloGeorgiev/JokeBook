@@ -34,6 +34,7 @@ module.exports = function (app) {
 
     // Comment api
     app.post('/jokes/:id/comment', auth.isAuthenticated, controllers.comments.createComment);
+    app.delete('/jokes/:id/comment/:commentId', controllers.comments.deleteComment);
 
     // Jokes api
     app.get('/jokes', controllers.jokes.getJokes);
