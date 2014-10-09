@@ -32,7 +32,6 @@ describe('Routing', function () {
                 if (err) {
                     throw err;
                 }
-                console.log(res.status);
                 var expected = 200;
                 var actual = res.status;
                 actual.should.equal(expected);
@@ -55,7 +54,6 @@ describe('Routing', function () {
                 if (err) {
                     throw err;
                 }
-                console.log(res.status);
                 var expected = 400;
                 var actual = res.status;
                 actual.should.equal(expected);
@@ -76,7 +74,6 @@ describe('Routing', function () {
                 if (err) {
                     throw err;
                 }
-                console.log(res.status);
                 var expected = 200;
                 var actual = res.status;
                 var actualMsg = res.body.success;
@@ -100,7 +97,6 @@ describe('Routing', function () {
                 if (err) {
                     throw err;
                 }
-                console.log(res.status);
                 var expectedStatus = 200;
                 var actualStatus = res.status;
                 var actualMsg = res.body.success;
@@ -154,6 +150,20 @@ describe('Routing', function () {
             });
         });
 
+        it('should not get user by Id if Id is not defined', function (done) {
+            request(url)
+            .get('/api/users/asd')
+            .end(function (err, res) {
+                if (err) {
+                    throw err;
+                }
+                var expectedStatus = 403;
+                var actualStatus = res.status;
+                actualStatus.should.equal(expectedStatus);
+                done();
+            });
+        });
+
         it('should not get all users if not authenticated', function (done) {
             request(url)
             .get('/api/users')
@@ -168,17 +178,31 @@ describe('Routing', function () {
             });
         });
 
-        it('should not get user by Id if Id is not defined', function (done) {
+        it('should get all users if authenticated', function (done) {
+            var profile = {
+                username: 'admin',
+                password: '123456'
+            };
+
             request(url)
-            .get('/api/users/asd')
-            .end(function (err, res) {
+            .post('/login')
+            .send(profile)
+            .end(function(err,res){
+                var expectedStatus = 200;
+                var actualStatus = res.status;
+                actualStatus.should.equal(expectedStatus);
+                request(url)
+                .get('/api/users')
+                .end(function(err,res){  
                 if (err) {
                     throw err;
                 }
-                var expectedStatus = 403;
+                var expectedStatus = 200;
                 var actualStatus = res.status;
                 actualStatus.should.equal(expectedStatus);
-                done();
+                done();       
+            });
+                done();        
             });
         });
     });
