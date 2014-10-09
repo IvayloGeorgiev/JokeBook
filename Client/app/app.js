@@ -21,6 +21,11 @@ app.config(function($routeProvider, $locationProvider) {
             templateUrl: '/partials/views/home',
             controller: 'MainCtrl'
         })
+        .when('/joke/:id/edit',{
+            templateUrl:'/partials/views/edit-joke',
+            controller:'EditJokeCtrl',
+            resolve: routeUserChecks.authenticated
+        })
         .when('/joke/:id',{
             templateUrl:'/partials/views/joke-details',
             controller:'JokeDetailsCtrl'
@@ -41,11 +46,6 @@ app.config(function($routeProvider, $locationProvider) {
         .when('/create-joke',{
             templateUrl:'/partials/views/create-joke',
             controller:'CreateJokeCtrl',
-            resolve: routeUserChecks.authenticated
-        })
-        .when('joke/:id/edit',{
-            templateUrl:'/partials/views/edit-joke',
-            controller:'EditJokeCtrl',
             resolve: routeUserChecks.authenticated
         })
         .when('/admin/users', {

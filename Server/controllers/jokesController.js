@@ -111,6 +111,7 @@ function updateJoke(req, res) {
                 return;
             }
 
+            console.log(req.body);
             joke.title = req.body.title || joke.title;
             joke.body = req.body.body || joke.body;
             joke.tags = req.body.tags || joke.tags;
