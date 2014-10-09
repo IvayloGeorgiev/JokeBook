@@ -1,8 +1,8 @@
-app.controller('JokeDetailsCtrl',["$scope", "$location", "$routeParams", "$route", "JokesResource", "comments", "auth", "identity", "notifier","likeService", function($scope, $location, $routeParams, $route, JokesResource, comments, auth, identity, notifier, likeService) {
+app.controller('JokeDetailsCtrl', ["$scope", "$location", "$routeParams", "$route", "JokesResource", "comments", "auth", "identity", "notifier","likeService", function($scope, $location, $routeParams, $route, JokesResource, comments, auth, identity, notifier, likeService) {
     $scope.identity = identity;
     var joke = JokesResource.get({id:$routeParams.id.toString()}, function() {
         $scope.joke = joke;
-        console.log(joke);
+
         if (identity.currentUser){
             $scope.canEdit = ((auth.isAuthorizedForRole('admin') === true) || (identity.currentUser._id === $scope.joke.user._id));
         }
@@ -24,6 +24,14 @@ app.controller('JokeDetailsCtrl',["$scope", "$location", "$routeParams", "$route
         var vote = {vote: vote};
         updateCanVote();
         likeService.put($routeParams.id, vote);
+    }
+
+    $scope.deleteJoke = function(){
+        JokesResource.remove({id:$routeParams.id.toString()}, function(){
+            $location.path("/jokes");
+        }, function(error){
+            console.log(error);
+        })
     }
 
     $scope.upvote = function upvote(){
