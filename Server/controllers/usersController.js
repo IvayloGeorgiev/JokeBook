@@ -1,3 +1,5 @@
+'use strict';
+
 var encryption = require('../utilities/encryption');
 var User = require('mongoose').model('User');
 
@@ -23,10 +25,9 @@ module.exports = {
                     res.status(400);
                     return res.send({reason: err.toString()});
                 }
-                ;
 
                 res.send(user);
-            })
+            });
         });
     },
     updateUser: function (req, res, next) {
@@ -40,10 +41,10 @@ module.exports = {
 
             User.update({_id: req.body._id}, updatedUserData, function () {
                 res.end();
-            })
+            });
         }
         else {
-            res.send({message: 'You do not have permissions!'})
+            res.send({message: 'You do not have permissions!'});
         }
     },
     getAllUsers: function (req, res) {
@@ -53,7 +54,7 @@ module.exports = {
             }
 
             res.send(collection);
-        })
+        });
     },
     getUserById: function (req, res) {
         var id = req.param('id');

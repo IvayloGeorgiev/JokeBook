@@ -15,7 +15,7 @@ function createJoke(req, res) {
     }
 
     var newJoke = new Joke();
-    newJoke.user = '54340f7a229c96ec11a90851';
+    newJoke.user = '543572674e437b1803b2b79c';
     newJoke.title = req.body.title;
     newJoke.body = req.body.body;
     newJoke.tags = req.body.tags || [];
@@ -33,7 +33,7 @@ function createJoke(req, res) {
     });
 }
 
-// Todo: filtering, map user id to user name
+// Todo: filtering
 function getJokes(req, res) {
     var query = url.parse(req.url, true).query;
     var currentPage = query.page || 0;
@@ -48,7 +48,7 @@ function getJokes(req, res) {
     }
     if (query.sort) {
         var orderPrefix = '-';
-        if(query.orderBy && query.orderBy === 'asc'){
+        if (query.orderBy && query.orderBy === 'asc') {
             orderPrefix = '';
         }
         switch (query.sort) {
@@ -67,6 +67,7 @@ function getJokes(req, res) {
     result.select({})
         .skip(JOKES_PER_PAGE * currentPage)
         .limit(JOKES_PER_PAGE)
+        .populate('user', '_id username')
         .exec(function (err, jokes) {
             if (err) {
                 res.status(500).send(err.message);
@@ -84,8 +85,9 @@ function getJokeById(req, res) {
         return;
     }
 
-    Joke.findOne({_id: id},
-        function (err, joke) {
+    Joke.findOne({_id: id}).
+        populate('user', '_id username').
+        exec(function (err, joke) {
             if (err) {
                 res.status(404).send('Joke with this id does not exist');
                 return;
