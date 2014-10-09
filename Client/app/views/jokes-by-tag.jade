@@ -1,6 +1,6 @@
 .container
     .jumbotron
-        h2 Jokes with tag: {{tag}}
+        h2 Section: {{tag}} type  jokes
 
 
         table.table.table-striped
@@ -9,16 +9,13 @@
                     td Joke Title
                     td Joke Author
                     td Date Created
-                    td Type
                     td Likes
             tbody
                 tr(ng-repeat="joke in jokes")
                     td {{ joke.title }}
                     td
-                        a(href="#/user-details/{{comment.user._id}}") {{ joke.user.username }}
+                        a(href="#/user-details/{{joke.user._id}}") {{ joke.user.username }}
                     td {{ joke.date | date: 'medium'}}
-                    td
-                        a(href="#/jokes-by-tag/{{joke.tags[0]}}") {{ joke.tags[0]}}
                     td {{ joke.likes }}
                     td
                         a.btn.btn-primary.btn-xs(href="#/joke/{{joke._id}}") View
