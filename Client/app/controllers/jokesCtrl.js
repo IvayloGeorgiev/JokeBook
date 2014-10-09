@@ -1,3 +1,3 @@
-app.controller('JokesCtrl', function($scope, jokesResource) {
-    $scope.jokes = jokesResource.query();
+app.controller('JokesCtrl', function($scope, JokesResource) {
+    $scope.jokes = JokesResource.query();
 });

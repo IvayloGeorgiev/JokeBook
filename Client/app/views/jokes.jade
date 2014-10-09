@@ -15,6 +15,8 @@
                     td {{ joke.user }}
                     td {{ joke.date | date: 'medium'}}
                     td {{ joke.likes }}
+                    td
+                        a.btn.btn-primary.btn-xs(href="#/joke/{{joke._id}}") View
 
 
 
