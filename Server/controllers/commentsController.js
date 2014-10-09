@@ -58,7 +58,7 @@ function deleteComment(req, res) {
             var index = -1;
 
             for (var i = 0; i < comments.length; i++) {
-                if (comments[i]._id === commentId) {
+                if (comments[i]._id.toString() === commentId.toString()) {
                     index = i;
                 }
             }

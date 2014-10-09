@@ -49,7 +49,8 @@ app.controller('JokeDetailsCtrl', ["$scope", "$location", "$routeParams", "$rout
         console.log(commentId);
         comments.delete($routeParams.id, commentId)
             .then(function(joke){
-                console.log(joke);
+                notifier.success("Comment deleted.");
+                $scope.joke = joke;
             }, function(error){
                 console.log(error);
             });
