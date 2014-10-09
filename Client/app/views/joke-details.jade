@@ -23,13 +23,23 @@
                 a(href="#/users/{{joke.user._id}}") {{joke.user.username}}
                 | &nbspon {{joke.date | date:'medium'}}
 
-        a.btn.btn-primary(href="#/joke/{{joke._id}}/edit")(ng-show="canEdit") Edit
+        a.btn.btn-primary(href="#/joke/{{joke._id}}/edit", ng-show="canEdit") Edit
 
         .row
             .col-md-10
                 h2.buffer Comments
-            .col-md-2(ng-show="identity.isAuthenticated")
-                a.btn.btn-primary(href="#/joke/{{joke._id}}/comment") Post comment
+            .col-md-2(ng-show="identity.isAuthenticated()")
+                p.btn.btn-primary(ng-click="enablePostComment()") Post comment
+
+        .row(ng-show="enablePost")
+            .col-md-12.comment-post
+                textarea.form-control(placeholder="Comment", ng-model="comment.text")
+            .col-md-3.pull-right
+                .col-md-6
+                    p.btn.btn-primary(ng-click="postComment(comment)") Post
+                .col-md-6
+                    p.btn.btn-primary(ng-click="cancelComment()") Cancel
+
 
         .col-md-12.well(ng-repeat="comment in joke.comments")
             .col-md-12
