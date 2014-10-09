@@ -2,7 +2,7 @@ app.controller('JokeDetailsCtrl',["$scope", "$location", "$routeParams", "$route
     $scope.identity = identity;
     var joke = JokesResource.get({id:$routeParams.id.toString()}, function() {
         $scope.joke = joke;
-
+        console.log(joke);
         if (identity.currentUser){
             $scope.canEdit = ((auth.isAuthorizedForRole('admin') === true) || (identity.currentUser._id === $scope.joke.user._id));
         }
@@ -18,7 +18,6 @@ app.controller('JokeDetailsCtrl',["$scope", "$location", "$routeParams", "$route
         }
     }
 
-
     function makeVote(vote){
         $scope.joke.likes += vote;
         $scope.joke.likeIds.push(identity.currentUser._id);
@@ -26,21 +25,22 @@ app.controller('JokeDetailsCtrl',["$scope", "$location", "$routeParams", "$route
         updateCanVote();
         likeService.put($routeParams.id, vote);
     }
+
     $scope.upvote = function upvote(){
         makeVote(1);
-    }
+    };
 
     $scope.downvote = function downvote(){
         makeVote(-1);
-    }
+    };
 
     $scope.enablePostComment = function enablePostComment(){
         $scope.enablePost = true;
-    }
+    };
 
     $scope.cancelComment = function cancelComment(){
         $scope.enablePost = false;
-    }
+    };
 
     $scope.postComment = function postComment(comment){
         if (comment && comment.text) {
@@ -57,5 +57,5 @@ app.controller('JokeDetailsCtrl',["$scope", "$location", "$routeParams", "$route
         } else {
             notifier.error("Comment field must not be empty!");
         }
-    }
+    };
 }]);
