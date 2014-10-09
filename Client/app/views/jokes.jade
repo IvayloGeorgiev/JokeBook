@@ -12,7 +12,7 @@
             tbody
                 tr(ng-repeat="joke in jokes")
                     td {{ joke.title }}
-                    td {{ joke.user }}
+                    td {{ joke.user.username }}
                     td {{ joke.date | date: 'medium'}}
                     td {{ joke.likes }}
                     td

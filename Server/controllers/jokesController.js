@@ -1,14 +1,11 @@
 'use strict';
 
-var mongoose = require('mongoose');
 var url = require('url');
 var Joke = require('../models/Joke');
-var Comment = require('../models/Comment');
 
 var JOKES_PER_PAGE = 10;
 
 function createJoke(req, res) {
-    // Todo: get user id
     if (!(req.body.title && req.body.body)) {
         res.status(400).send('Bad request');
         return;
@@ -33,7 +30,6 @@ function createJoke(req, res) {
     });
 }
 
-// Todo: filtering
 function getJokes(req, res) {
     var query = url.parse(req.url, true).query;
     var currentPage = query.page || 0;
@@ -46,6 +42,7 @@ function getJokes(req, res) {
     if (query.tag) {
         result = result.where('tags').in([query.tag]);
     }
+
     if (query.sort) {
         var orderPrefix = '-';
         if (query.orderBy && query.orderBy === 'asc') {
@@ -61,6 +58,9 @@ function getJokes(req, res) {
             case 'user':
                 result = result.sort(orderPrefix + 'user');
                 break;
+            default:
+                res.status(400).send('Bad request');
+                break;
         }
     }
 
@@ -68,6 +68,7 @@ function getJokes(req, res) {
         .skip(JOKES_PER_PAGE * currentPage)
         .limit(JOKES_PER_PAGE)
         .populate('user', '_id username')
+        .populate('comments.user', '_id username')
         .exec(function (err, jokes) {
             if (err) {
                 res.status(500).send(err.message);
@@ -87,6 +88,7 @@ function getJokeById(req, res) {
 
     Joke.findOne({_id: id}).
         populate('user', '_id username').
+        populate('comments.user', '_id username').
         exec(function (err, joke) {
             if (err) {
                 res.status(404).send('Joke with this id does not exist');
@@ -137,7 +139,6 @@ function deleteJoke(req, res) {
         function (err, joke) {
             if (err) {
                 res.status(404).send('Joke with this id does not exist');
-                return;
             }
             else {
                 res.send();
