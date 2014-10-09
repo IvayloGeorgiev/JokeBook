@@ -25,12 +25,12 @@
                 ul.tag-list
                     li Tags:&nbsp
                     li(ng-repeat="tag in joke.tags")
-                        a(href="#/tags/{{tag}}") {{tag}}
+                        a(href="#/jokes-by-tag/{{tag}}") {{tag}}
                         | &nbsp
 
             .col-md-6.pull-right
                 | posted by &nbsp
-                a(href="#/users/{{joke.user._id}}") {{joke.user.username}}
+                a(href="#/user-details/{{joke.user._id}}") {{joke.user.username}}
                 | &nbspon {{joke.date | date:'medium'}}
 
         a.btn.btn-primary(href="#/joke/{{joke._id}}/edit", ng-show="canEdit") Edit

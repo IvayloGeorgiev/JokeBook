@@ -57,6 +57,10 @@ app.config(function($routeProvider, $locationProvider) {
             templateUrl:'/partials/views/user-details',
             controller:'UserDetailsCtrl',
             resolve: routeUserChecks.authenticated
+        }).
+        when('/jokes-by-tag/:tag',{
+            templateUrl:'/partials/views/jokes-by-tag',
+            controller:'JokesByTagCtrl'
         })
 });
 
