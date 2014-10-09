@@ -43,7 +43,8 @@
 
         .col-md-12.well(ng-repeat="comment in joke.comments")
             .col-md-12
-                a(href="#/users/{{comment.user._id}}") {{comment.user.username}}
+                img(width="20" heigth="20"  src="{{comment.user.avatar}}")
+                a(href="#/users/{{comment.user._id}}"){{comment.user.username}}
                 | &nbspon {{comment.date | date: 'medium'}}
             .col-md-11.comment-offset
                 | {{comment.text}}

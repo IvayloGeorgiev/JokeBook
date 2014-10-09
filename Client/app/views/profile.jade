@@ -32,10 +32,14 @@
                     tr
                         td Joke Title
                         td Likes
+                        td Date Posted
                 tbody
-                    //tr(ng-repeat="joke in yourJokes")
-                    //    td {{ joke.title }}
-                    //    td {{ joke.likes }}
+                    tr(ng-repeat="joke in yourJokes")
+                        td {{ joke.title }}
+                        td {{ joke.likes }}
+                        td {{ joke.date | date:'medium'}}
+                        td
+                            a.btn.btn-primary.btn-xs(href="#/joke/{{joke._id}}") View
 
 
 
