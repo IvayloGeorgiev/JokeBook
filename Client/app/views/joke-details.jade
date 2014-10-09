@@ -25,12 +25,12 @@
                 ul.tag-list
                     li Tags:&nbsp
                     li(ng-repeat="tag in joke.tags")
-                        a(href="#/tags/{{tag}}") {{tag}}
+                        a(href="#/jokes-by-tag/{{tag}}") {{tag}}
                         | &nbsp
 
             .col-md-6.pull-right
                 | posted by &nbsp
-                a(href="#/users/{{joke.user._id}}") {{joke.user.username}}
+                a(href="#/user-details/{{joke.user._id}}") {{joke.user.username}}
                 | &nbspon {{joke.date | date:'medium'}}
 
         a.btn.btn-primary(href="#/joke/{{joke._id}}/edit", ng-show="canEdit") Edit
@@ -56,7 +56,7 @@
                 img(width="20", heigth="20", src="{{comment.user.avatar}}", ng-show="comment.user.avatar")
                 a(href="#/user-details/{{comment.user._id}}") {{comment.user.username}}
                 | &nbspon {{comment.date | date: 'medium'}}
-            .col-md-11.comment-offset
+            .col-md-11.comment-offset.comment-text
                 | {{comment.text}}
 
     .col-md-12(ng-show="invalidUrl")

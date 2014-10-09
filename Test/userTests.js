@@ -194,14 +194,13 @@ describe('Routing', function () {
                 request(url)
                 .get('/api/users')
                 .end(function(err,res){  
-                if (err) {
-                    throw err;
-                }
-                var expectedStatus = 200;
-                var actualStatus = res.status;
-                actualStatus.should.equal(expectedStatus);
-                done();       
-            });
+                    if (err) {
+                        throw err;
+                    }
+                    var expectedStatus = 200;
+                    var actualStatus = res.status;
+                    actualStatus.should.equal(expectedStatus);      
+                });
                 done();        
             });
         });
