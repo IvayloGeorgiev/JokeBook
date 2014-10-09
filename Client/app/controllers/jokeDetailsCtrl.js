@@ -5,9 +5,24 @@ app.controller('JokeDetailsCtrl', function($scope, $location, $routeParams, $rou
         if (identity.currentUser){
             $scope.canEdit = ((auth.isAuthorizedForRole('admin') == true) || (identity.currentUser._id === $scope.joke.user._id));
         }
+
+        if (identity.currentUser){
+            $scope.canPost = true;
+            //TODO add id check from server list.
+        }
     }, function(){
         $scope.invalidUrl = true;
     });
+
+    $scope.upvote = function upvote(){
+        $scope.joke.likes++;
+        //TODO - server and validation
+    }
+
+    $scope.downvote = function downvote(){
+        $scope.joke.likes--;
+        //TODO - server and validation
+    }
 
     $scope.enablePostComment = function enablePostComment(){
         $scope.enablePost = true;

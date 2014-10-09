@@ -2,12 +2,25 @@
 .container(ng-controller="JokeDetailsCtrl")
 
     .col-md-8(ng-hide="invalidUrl")
-        .col-md-12.buffer
-                h3 {{joke.title}}
+        .row
+            .col-md-9.buffer
+                    h1 {{joke.title}}
+            .col-md-3.likes.buffer
+                .row
+                    .col-md-10
+                        h4.joke-likes(ng-class="joke.likes >= 0 ? 'positive' : 'negative' ") Likes: {{joke.likes}}
+                    .col-md-2(ng-show = "identity.canVote()")
+                        .row.vote-arrow
+                            .col-md-12(ng-click="upvote()")
+                                img(src='img/upvote.png')
+                        .row.vote-arrow
+                            .col-md-12(ng-click="downvote()")
+                                img(src='img/downvote.png')
 
-        .col-md-12.likes.buffer(ng-class="joke.likes >= 0 ? 'positive' : 'negative' ") Likes: {{joke.likes}}
+        .row
 
-        .row.buffer
+
+        .row.joke-body
             .col-md-11.col-md-offset-1.well {{joke.body}}
 
         .row.buffer
