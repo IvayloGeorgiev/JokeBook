@@ -3,9 +3,9 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-// Todo: validation and user ref
 var commentSchema = new mongoose.Schema({
-    user: Schema.ObjectId,
+    //user: { type: Schema.ObjectId, ref: 'User', required: true },
+    user: String,
     text: String,
     date: Date
 });
