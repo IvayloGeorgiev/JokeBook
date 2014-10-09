@@ -8,10 +8,10 @@ var config = require('../Server/config/config');
 describe('Routing', function () {
     var url = 'http://localhost:3030';
 
-    // create a connection with the database
     before(function (done) {
-
-        // In our tests we use the test db
+        if (mongoose.connection.db) {
+            return done();
+        }
         mongoose.connect(config.db);
         done();
     });
@@ -194,14 +194,13 @@ describe('Routing', function () {
                 request(url)
                 .get('/api/users')
                 .end(function(err,res){  
-                if (err) {
-                    throw err;
-                }
-                var expectedStatus = 200;
-                var actualStatus = res.status;
-                actualStatus.should.equal(expectedStatus);
-                done();       
-            });
+                    if (err) {
+                        throw err;
+                    }
+                    var expectedStatus = 200;
+                    var actualStatus = res.status;
+                    actualStatus.should.equal(expectedStatus);      
+                });
                 done();        
             });
         });

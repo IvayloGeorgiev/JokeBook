@@ -1,14 +1,14 @@
 'use strict';
 
-app.factory('tagsService', function($q, $http) {
+app.factory('likeService', function($q, $http) {
     return{
-        get: function(){
-            var url = "/tags/";
+        put: function(id, vote){
+            var url = "/jokes/" + id.toString() + "/like";
             var deferred = $q.defer();
 
-            $http.get(url)
-                .success(function(tags){
-                    deferred.resolve(tags);
+            $http.put(url, vote)
+                .success(function(){
+                    deferred.resolve();
                 }, function(response){
                     deferred.reject(response);
                 });

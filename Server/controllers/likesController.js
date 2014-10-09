@@ -22,7 +22,12 @@ function addLike(req, res) {
                 return;
             }
 
-            joke.likes++;
+            if (req.body.vote !== -1 && req.body.vote != 1){
+                res.stats(404).send('No vote value supplied');
+                return;
+            }
+
+            joke.likes += req.body.vote;
             joke.likeIds.push(userId);
             joke.save(function (err) {
                 if (err) {
