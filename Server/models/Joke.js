@@ -6,7 +6,7 @@ var Comment = require('../models/Comment.js');
 
 // Todo: validation and user ref
 var jokeSchema = new mongoose.Schema({
-    user: Schema.ObjectId,
+    user: { type: Schema.ObjectId, ref: 'User', required: true },
     title: String,
     body: String,
     likes: Number,
