@@ -68,7 +68,7 @@ function getJokes(req, res) {
         .skip(JOKES_PER_PAGE * currentPage)
         .limit(JOKES_PER_PAGE)
         .populate('user', '_id username')
-        .populate('comments.user', '_id username')
+        .populate('comments.user', '_id username avatar')
         .exec(function (err, jokes) {
             if (err) {
                 res.status(500).send(err.message);
@@ -88,7 +88,7 @@ function getJokeById(req, res) {
 
     Joke.findOne({_id: id}).
         populate('user', '_id username').
-        populate('comments.user', '_id username').
+        populate('comments.user', '_id username avatar').
         exec(function (err, joke) {
             if (err) {
                 res.status(404).send('Joke with this id does not exist');
