@@ -1,4 +1,5 @@
-app.controller('JokesCtrl', function($scope, JokesResource) {
+app.controller('JokesCtrl', function($scope, identity,JokesResource) {
+    $scope.identity = identity;
     $scope.request = {
         page: 0
     };

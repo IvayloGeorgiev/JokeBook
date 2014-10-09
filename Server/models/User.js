@@ -45,6 +45,7 @@ module.exports = {
                     lastName: 'Owner',
                     salt: salt,
                     hashPass: hashedPwd,
+                    avatar: 'http://img2.wikia.nocookie.net/__cb20120204201430/plazmabursttwo/images/0/0e/Admin_logo_by_lucifercho-d39lpuk.png',
                     roles: ['admin']
                 });
             }

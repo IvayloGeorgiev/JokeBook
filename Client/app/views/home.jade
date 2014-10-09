@@ -14,7 +14,9 @@
                     td Joke Author
                     td Likes
             tbody
-                //tr(ng-repeat="joke in jokes")
-                //    td {{ joke.title }}
-                //    td {{ joke.author }}
-                //    td {{ joke.likes }}
+                tr(ng-repeat="joke in jokes")
+                    td {{ joke.title }}
+                    td {{ joke.author }}
+                    td {{ joke.likes }}
+                    td
+                        a.btn.btn-primary.btn-xs(href="#/joke/{{joke._id}}") View
