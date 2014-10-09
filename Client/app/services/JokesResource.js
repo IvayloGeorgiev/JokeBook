@@ -1,5 +1,5 @@
-app.factory('JokesResource', function($resource) {
-    var JokesResource = $resource('jokes/:id', {_id:'@id'}, { get: {method: 'GET', isArray: true}, update: {method: 'PUT', isArray: false}});
+app.factory('jokesResource', function($resource) {
+    var jokesResource = $resource('jokes/:id', {_id:'@id'}, { update: {method: 'PUT', isArray: false}});
 
-    return JokesResource;
+    return jokesResource;
 })

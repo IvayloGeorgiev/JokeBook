@@ -8,7 +8,7 @@
         .col-md-12.likes.buffer(ng-class="joke.likes >= 0 ? 'positive' : 'negative' ") Likes: {{joke.likes}}
 
         .row.buffer
-            .col-md-11.col-md-offset-1 {{joke.body}}
+            .col-md-11.col-md-offset-1.well {{joke.body}}
 
         .row.buffer
             .col-md-6
@@ -21,15 +21,19 @@
             .col-md-6.pull-right
                 | posted by &nbsp
                 a(href="#/users/{{joke.user._id}}") {{joke.user.username}}
-                | &nbspon {{joke.date | date:'MMM dd, yyyy h:mm a'}}
+                | &nbspon {{joke.date | date:'medium'}}
 
         a.btn.btn-primary(href="#/joke/{{joke._id}}/edit")(ng-show="canEdit") Edit
 
-        h2.buffer Comments
+        .row
+            .col-md-10
+                h2.buffer Comments
+            .col-md-2(ng-show="identity.isAuthenticated")
+                a.btn.btn-primary(href="#/joke/{{joke._id}}/comment") Post comment
 
         .col-md-12.well(ng-repeat="comment in joke.comments")
             .col-md-12
                 a(href="#/users/{{comment.user._id}}") {{comment.user.username}}
-                | &nbspon {{comment.date | date:'MMM dd, yyyy h:mm a'}}
+                | &nbspon {{comment.date | date: 'medium'}}
             .col-md-11.comment-offset
                 | {{comment.text}}
