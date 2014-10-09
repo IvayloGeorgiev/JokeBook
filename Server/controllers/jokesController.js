@@ -113,6 +113,11 @@ function updateJoke(req, res) {
                 return;
             }
 
+            if (joke.user.toString() !== req.user._id.toString()) {
+                res.status(403).send('Only author can edit a joke');
+                return;
+            }
+
             console.log(req.body);
             joke.title = req.body.title || joke.title;
             joke.body = req.body.body || joke.body;
@@ -132,6 +137,11 @@ function deleteJoke(req, res) {
     var id = req.param('id');
     if (!id) {
         res.status(400).send('Bad request');
+        return;
+    }
+
+    if (req.user.roles.indexOf('admin') < 0) {
+        res.status(403).send('Operation not allowed');
         return;
     }
 
