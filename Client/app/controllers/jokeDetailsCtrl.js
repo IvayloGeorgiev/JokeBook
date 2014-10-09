@@ -1,4 +1,4 @@
-app.controller('JokeDetailsCtrl',["$scope", "$location", "$routeParams", "$route", "JokesResource", "comments", "auth", "identity", "notifier", function($scope, $location, $routeParams, $route, JokesResource, comments, auth, identity, notifier) {
+app.controller('JokeDetailsCtrl',["$scope", "$location", "$routeParams", "$route", "JokesResource", "comments", "auth", "identity", "notifier","likeService", function($scope, $location, $routeParams, $route, JokesResource, comments, auth, identity, notifier, likeService) {
     $scope.identity = identity;
     var joke = JokesResource.get({id:$routeParams.id.toString()}, function() {
         $scope.joke = joke;
@@ -7,23 +7,31 @@ app.controller('JokeDetailsCtrl',["$scope", "$location", "$routeParams", "$route
             $scope.canEdit = ((auth.isAuthorizedForRole('admin') === true) || (identity.currentUser._id === $scope.joke.user._id));
         }
 
-        if (identity.currentUser){
-            $scope.canVote = $scope.joke.likeIds.indexOf($scope.joke.user._id)
-            //TODO add id check from server list.
-        }
+        updateCanVote();
     }, function(){
         $scope.invalidUrl = true;
     });
 
-    $scope.upvote = function upvote(){
+    function updateCanVote(){
+        if (identity.currentUser){
+            $scope.canVote = ($scope.joke.likeIds.indexOf(identity.currentUser._id) === -1);
+        }
+    }
 
-        $scope.joke.likes++;
-        //TODO - server and validation
+
+    function makeVote(vote){
+        $scope.joke.likes += vote;
+        $scope.joke.likeIds.push(identity.currentUser._id);
+        var vote = {vote: vote};
+        updateCanVote();
+        likeService.put($routeParams.id, vote);
+    }
+    $scope.upvote = function upvote(){
+        makeVote(1);
     }
 
     $scope.downvote = function downvote(){
-        $scope.joke.likes--;
-        //TODO - server and validation
+        makeVote(-1);
     }
 
     $scope.enablePostComment = function enablePostComment(){
