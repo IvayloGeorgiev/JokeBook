@@ -8,10 +8,10 @@ var config = require('../Server/config/config');
 describe('Routing', function () {
     var url = 'http://localhost:3030';
 
-    // create a connection with the database
     before(function (done) {
-
-        // In our tests we use the test db
+        if (mongoose.connection.db) {
+            return done();
+        }
         mongoose.connect(config.db);
         done();
     });
