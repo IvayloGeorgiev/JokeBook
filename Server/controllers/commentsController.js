@@ -63,6 +63,11 @@ function deleteComment(req, res) {
                 }
             }
 
+            if (index === -1){
+                res.status(404).send('Comment does not exist');
+                return;
+            }
+
             comments.splice(index, 1);
             joke.save(function (err, result) {
                 if (err) {

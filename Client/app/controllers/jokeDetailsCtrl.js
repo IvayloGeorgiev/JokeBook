@@ -27,7 +27,6 @@ app.controller('JokeDetailsCtrl', ["$scope", "$location", "$routeParams", "$rout
     }
 
     $scope.isAdmin = auth.isAuthorizedForRole('admin') === true;
-    console.log($scope.isAdmin);
 
     $scope.deleteJoke = function(){
         JokesResource.remove({id:$routeParams.id.toString()}, function(){
@@ -46,13 +45,12 @@ app.controller('JokeDetailsCtrl', ["$scope", "$location", "$routeParams", "$rout
     };
 
     $scope.deleteComment = function(commentId){
-        console.log(commentId);
         comments.delete($routeParams.id, commentId)
             .then(function(joke){
                 notifier.success("Comment deleted.");
                 $scope.joke = joke;
-            }, function(error){
-                console.log(error);
+            }, function(response){
+                notifier.error(response);
             });
     };
 

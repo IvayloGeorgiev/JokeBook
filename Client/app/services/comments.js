@@ -22,6 +22,9 @@ app.factory('comments', function($q, $http) {
                     deferred.resolve(joke);
                 }, function(response){
                     deferred.reject(response);
+                })
+                .error(function(response){
+                    deferred.reject(response);
                 });
 
             return deferred.promise;
