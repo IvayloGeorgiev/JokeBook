@@ -17,12 +17,13 @@ function createJoke(req, res) {
     newJoke.body = req.body.body;
     newJoke.tags = req.body.tags || [];
     newJoke.likes = 0;
+    newJoke.likeIds = [];
     newJoke.comments = [];
     newJoke.date = new Date();
 
     newJoke.save(function (err, result) {
         if (err) {
-            res.status(500).send(err.message);
+            res.status(400).send(err.message);
         }
         else {
             res.send(result);
@@ -124,7 +125,7 @@ function updateJoke(req, res) {
             joke.tags = req.body.tags || joke.tags;
             joke.save(function (err, result) {
                 if (err) {
-                    res.status(500).send(err.message);
+                    res.status(400).send(err.message);
                 }
                 else {
                     res.send(result);

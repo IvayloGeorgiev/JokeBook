@@ -42,6 +42,9 @@ module.exports = function (app) {
     app.put('/jokes/:id', auth.isAuthenticated, controllers.jokes.updateJoke);
     app.delete('/jokes/:id', auth.isAuthenticated, controllers.jokes.deleteJoke);
 
+    // Likes api
+    app.put('/jokes/:id/like', auth.isAuthenticated, controllers.likes.addLike);
+
     app.get('/api/*', function (req, res) {
         res.status(404);
         res.end();
