@@ -1,11 +1,8 @@
 'use strict';
 
-var mongoose = require('mongoose');
-var url = require('url');
 var Joke = require('../models/Joke');
 var Comment = require('../models/Comment');
 
-// Todo: user id
 function createComment(req, res) {
     var id = req.param('id');
     if (!id) {
@@ -21,8 +18,7 @@ function createComment(req, res) {
             }
 
             var comment = new Comment();
-            // comment.user = req.user._id;
-            comment.user = 'testing comment';
+            comment.user = req.user._id;
             comment.text = req.body.text;
             comment.date = new Date();
             joke.comments.push(comment);
