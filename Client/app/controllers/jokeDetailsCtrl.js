@@ -26,13 +26,16 @@ app.controller('JokeDetailsCtrl', ["$scope", "$location", "$routeParams", "$rout
         likeService.put($routeParams.id, vote);
     }
 
+    $scope.isAdmin = auth.isAuthorizedForRole('admin') === true;
+    console.log($scope.isAdmin);
+
     $scope.deleteJoke = function(){
         JokesResource.remove({id:$routeParams.id.toString()}, function(){
             $location.path("/jokes");
         }, function(error){
             console.log(error);
         })
-    }
+    };
 
     $scope.upvote = function upvote(){
         makeVote(1);
@@ -41,6 +44,17 @@ app.controller('JokeDetailsCtrl', ["$scope", "$location", "$routeParams", "$rout
     $scope.downvote = function downvote(){
         makeVote(-1);
     };
+
+    $scope.deleteComment = function(commentId){
+        console.log(commentId);
+        comments.delete($routeParams.id, commentId)
+            .then(function(joke){
+                console.log(joke);
+            }, function(error){
+                console.log(error);
+            });
+    };
+
 
     $scope.enablePostComment = function enablePostComment(){
         $scope.enablePost = true;

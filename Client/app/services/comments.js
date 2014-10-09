@@ -12,6 +12,19 @@ app.factory('comments', function($q, $http) {
                 });
 
             return deferred.promise;
+        },
+        delete: function(jokeId, commentId){
+            var url = "/jokes/" + jokeId.toString() + "/comment/" + commentId.toString();
+            var deferred = $q.defer();
+
+            $http.delete(url)
+                .success(function(joke){
+                    deferred.resolve(joke);
+                }, function(response){
+                    deferred.reject(response);
+                });
+
+            return deferred.promise;
         }
     }
 })

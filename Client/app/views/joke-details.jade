@@ -36,7 +36,7 @@
         .row(ng-show="canEdit")
             .col-md-1
                 a.btn.btn-primary(href="#/joke/{{joke._id}}/edit") Edit
-            .col-md-1
+            .col-md-1(ng-show="isAdmin")
                 p.btn.btn-primary(ng-click="deleteJoke()") Delete
 
         .row
@@ -55,13 +55,18 @@
                     p.btn.btn-primary(ng-click="cancelComment()") Cancel
 
 
-        .col-md-12.well(ng-repeat="comment in joke.comments")
-            .col-md-12
-                img(width="20", heigth="20", src="{{comment.user.avatar}}", ng-show="comment.user.avatar")
-                a(href="#/user-details/{{comment.user._id}}") {{comment.user.username}}
-                | &nbspon {{comment.date | date: 'medium'}}
-            .col-md-11.comment-offset.comment-text
-                | {{comment.text}}
+        .row.well(ng-repeat="comment in joke.comments")
+            .row
+                .col-md-12
+                    img(width="20", heigth="20", src="{{comment.user.avatar}}", ng-show="comment.user.avatar")
+                    a(href="#/user-details/{{comment.user._id}}") {{comment.user.username}}
+                    | &nbspon {{comment.date | date: 'medium'}}
+            .row
+                .col-md-11.comment-offset.comment-text
+                    | {{comment.text}}
+            .row(ng-show="isAdmin")
+                .col-md-1
+                    p.btn.btn-primary(ng-click="deleteComment(comment._id)", data="{{comment._id}}") Delete
 
     .col-md-12(ng-show="invalidUrl")
         h2.center-text Invalid post id!
