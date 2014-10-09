@@ -3,8 +3,10 @@ app.controller('JokeDetailsCtrl', function($scope, $location, $routeParams, $rou
     var joke = JokesResource.get({id:$routeParams.id.toString()}, function() {
         $scope.joke = joke;
         if (identity.currentUser){
-            $scope.canEdit = ((auth.isAuthorizedForRole('admin') == true) || (identity.currentUser._id === $scope.joke.user));
+            $scope.canEdit = ((auth.isAuthorizedForRole('admin') == true) || (identity.currentUser._id === $scope.joke.user._id));
         }
+    }, function(){
+        $scope.invalidUrl = true;
     });
 
     $scope.enablePostComment = function enablePostComment(){

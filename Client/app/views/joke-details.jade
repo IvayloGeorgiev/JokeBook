@@ -1,7 +1,7 @@
 // list joke details
 .container(ng-controller="JokeDetailsCtrl")
 
-    .col-md-8
+    .col-md-8(ng-hide="invalidUrl")
         .col-md-12.buffer
                 h3 {{joke.title}}
 
@@ -47,3 +47,6 @@
                 | &nbspon {{comment.date | date: 'medium'}}
             .col-md-11.comment-offset
                 | {{comment.text}}
+
+    .col-md-12(ng-show="invalidUrl")
+        h2.center-text Invalid post id!
