@@ -1,5 +1,11 @@
-app.controller('EditJokeCtrl', function($scope, $location, $routeParams, identity, auth, JokesResource, notifier) {
+app.controller('EditJokeCtrl', function($scope, $location, $routeParams, identity, tagsService, auth, JokesResource, notifier) {
     $scope.routeId = $routeParams.id.toString();
+
+    tagsService.get().then(function (tags){
+        $scope.tags = tags;
+    }, function (error){
+        notifier.error('Could not retrieve tag data!');
+    });
 
     var joke = JokesResource.get({id:$routeParams.id.toString()}, function() {
         $scope.joke = joke;
@@ -12,10 +18,10 @@ app.controller('EditJokeCtrl', function($scope, $location, $routeParams, identit
     });
 
     $scope.edit = function editPost(joke){
-        JokesResource.update({id:$routeParams.id.toString()}, $scope.joke, function(res){
+        JokesResource.update({id:$routeParams.id.toString()}, joke, function(res){
             $location.path("joke/" + $scope.routeId);
         }, function(res){
-            notifier('Edit post failed!')
+            notifier.error('Edit post failed!')
         });
     }
 });

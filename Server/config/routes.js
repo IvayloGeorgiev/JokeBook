@@ -23,6 +23,10 @@ module.exports = function (app) {
         res.render('../../Client/app/' + req.params.partialArea + '/' + req.params.partialName);
     });
 
+    app.get('/partials/:partialArea/:partialSubArea/:partialName', function (req, res) {
+        res.render('../../Client/app/' + req.params.partialArea + '/' + req.params.partialSubArea + '/' + req.params.partialName);
+    });
+
     app.get('/tags', function (req, res) {
         res.send(tags);
         res.end();

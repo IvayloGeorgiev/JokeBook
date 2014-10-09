@@ -13,8 +13,7 @@
                         textarea.form-control(placeholder="Content", ng-model="joke.body", required)
                 .form-group
                     label.col-md-2.control-label(for="username") Joke Tags
-                    .col-md-10
-                        input.form-control(type="text", placeholder="Tags", ng-model="joke.tags", required)
+                    .col-md-10(tag-selector='')
                 .pull-right
                     button.btn.btn-primary(ng-click="create(joke)", ng-disabled="jokeCreateForm.$invalid") Post
                     a.btn.btn-primary(href="#/") Cancel

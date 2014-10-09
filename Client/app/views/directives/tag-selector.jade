@@ -1,0 +1,3 @@
+.col-md-12
+    select.form-control(id='tags', ng-model='joke.tags' required)
+        option(ng-repeat='tag in tags', value='{{tag}}') {{tag}}
