@@ -1,0 +1,25 @@
+.container(ng-controller="EditJokeCtrl")
+
+    .col-md-8(ng-hide="invalidUrl")
+        .well
+            form.form-horizontal(name="jokeCreateForm")
+                fieldset
+                    legend Edit As Joke
+                    .form-group
+                        label.col-md-2.control-label(for="first-name") Joke Title
+                        .col-md-10
+                            input.form-control(type="text", ng-model='joke.title', placeholder="Title", required)
+                    .form-group
+                        label.col-md-2.control-label(for="last-name") Joke Content
+                        .col-md-10
+                            textarea.form-control(placeholder="Content", ng-model='joke.body', required)
+                    .form-group
+                        label.col-md-2.control-label(for="username") Joke Tags
+                        .col-md-10
+                            input.form-control(type="text", placeholder="Tags", ng-model='joke.tags', required)
+                    .pull-right
+                        button.btn.btn-primary(ng-click="edit(joke)", ng-disabled="jokeCreateForm.$invalid") Save
+                        a.btn.btn-primary(href="#/joke/{{routeId}}") Cancel
+
+    .col-md-12(ng-show="invalidUrl")
+        h2.center-text Invalid post id!

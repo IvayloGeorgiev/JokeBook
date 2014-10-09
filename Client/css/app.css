@@ -49,3 +49,6 @@ footer p {
   margin-top: 10px;
   margin-bottom: 10px;
 }
+.center-text {
+  text-align: center;
+}

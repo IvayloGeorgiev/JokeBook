@@ -21,6 +21,11 @@ app.config(function($routeProvider, $locationProvider) {
             templateUrl: '/partials/views/home',
             controller: 'MainCtrl'
         })
+        .when('/joke/:id/edit',{
+            templateUrl:'/partials/views/edit-joke',
+            controller:'EditJokeCtrl',
+            resolve: routeUserChecks.authenticated
+        })
         .when('/joke/:id',{
             templateUrl:'/partials/views/joke-details',
             controller:'JokeDetailsCtrl'
