@@ -15,7 +15,7 @@ function createJoke(req, res) {
     }
 
     var newJoke = new Joke();
-    newJoke.user = '543572674e437b1803b2b79c';
+    newJoke.user = req.user._id;
     newJoke.title = req.body.title;
     newJoke.body = req.body.body;
     newJoke.tags = req.body.tags || [];
