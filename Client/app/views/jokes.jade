@@ -5,13 +5,15 @@
         .pull-right
             a.btn.btn-primary(href="#/create-joke" ng-show="identity.isAuthenticated()") Create Joke
 
-        .form-group.col-lg-5
+        .form-group.col-lg-3
             label.col-md-2.control-label(for="first-name") Sort By
                 select(ng-model="request.sort")
                     option likes
                     option date
                     option user
-        .form-group.col-lg-5
+        .form-group.col-lg-3.search
+            input(type="text" ng-model="request.title" ng-change="onSearchChange(request)" placeholder="Search by title")
+        .form-group.col-lg-3
             label.col-md-2.control-label(for="first-name") Order Type
                 select(ng-model="request.orderBy")
                     option() asc

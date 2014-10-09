@@ -11,6 +11,14 @@ app.controller('JokesCtrl', ["$scope", "identity", "JokesResource", function($sc
         }
     }
 
+    $scope.onSearchChange = function (request) {
+        JokesResource.query(request)
+            .$promise
+            .then(function(jokes) {
+                $scope.jokes = jokes;
+            });
+    };
+
     $scope.nextPage = function() {
         $scope.request.page++;
         $scope.filter($scope.request);
