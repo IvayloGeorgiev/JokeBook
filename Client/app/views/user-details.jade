@@ -2,7 +2,7 @@
     .well
         h2 {{user.firstName+' '+user.lastName}}
 
-        form.form-horizontal(name="profileForm")
+        form.form-horizontal(name="profileForm" ng-show="identity.isAuthorizedForRole('admin')")
             fieldset
                 legend Change Settings
                 .form-group
@@ -36,10 +36,14 @@
                     tr
                         td Joke Title
                         td Likes
+                        td Date Posted
                 tbody
-                    //tr(ng-repeat="joke in yourJokes")
-                    //    td {{ joke.title }}
-                    //    td {{ joke.likes }}
+                    tr(ng-repeat="joke in jokes" ng-show="joke.user._id === user._id")
+                        td {{ joke.title }}
+                        td {{ joke.likes }}
+                        td {{ joke.date | date:'medium'}}
+                        td
+                            a.btn.btn-primary.btn-xs(href="#/joke/{{joke._id}}") View
 
 
 

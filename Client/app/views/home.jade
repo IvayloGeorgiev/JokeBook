@@ -5,7 +5,7 @@
 
 
         .jumbotron
-        h2 Top 10 Jokes
+        h2 Latest 10 Jokes
 
         table.table.table-striped
             thead
@@ -16,7 +16,8 @@
             tbody
                 tr(ng-repeat="joke in jokes")
                     td {{ joke.title }}
-                    td {{ joke.author }}
+                    td
+                        a(href="#/user-details/{{joke.user._id}}"){{ joke.user.username }}
                     td {{ joke.likes }}
                     td
                         a.btn.btn-primary.btn-xs(href="#/joke/{{joke._id}}") View

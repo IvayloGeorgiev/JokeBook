@@ -34,7 +34,7 @@
                         td Likes
                         td Date Posted
                 tbody
-                    tr(ng-repeat="joke in yourJokes")
+                    tr(ng-repeat="joke in yourJokes" ng-show="joke.user._id === identity.currentUser._id")
                         td {{ joke.title }}
                         td {{ joke.likes }}
                         td {{ joke.date | date:'medium'}}

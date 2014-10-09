@@ -1,7 +1,9 @@
-app.controller('UserDetailsCtrl', function($scope,$routeParams,auth, notifier, UsersResource) {
+app.controller('UserDetailsCtrl', function($scope,$routeParams,auth, notifier,identity,JokesResource, UsersResource) {
+    $scope.identity = identity;
 
     var currentUser= UsersResource.get({id:$routeParams.id.toString()}, function () {
        $scope.user = currentUser;
+        console.log($scope.user._id);
     });
 
 
@@ -15,6 +17,6 @@ app.controller('UserDetailsCtrl', function($scope,$routeParams,auth, notifier, U
             notifier.error('You failed to update the user info');
         });
     };
-
+    $scope.jokes =JokesResource.query();
 });
 

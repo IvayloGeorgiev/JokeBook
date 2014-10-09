@@ -56,7 +56,7 @@ app.config(function($routeProvider, $locationProvider) {
         .when('/user-details/:id',{
             templateUrl:'/partials/views/user-details',
             controller:'UserDetailsCtrl',
-            resolve:routeUserChecks.adminRole
+            resolve: routeUserChecks.authenticated
         })
 });
 
