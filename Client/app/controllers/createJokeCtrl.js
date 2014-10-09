@@ -1,4 +1,4 @@
-app.controller('CreateJokeCtrl', function($scope, $location, identity, jokes, notifier, tagsService) {
+app.controller('CreateJokeCtrl',['$scope', '$location', 'identity', 'jokes', 'notifier', 'tagsService', function($scope, $location, identity, jokes, notifier, tagsService) {
     tagsService.get().then(function (tags){
         $scope.tags = tags;
     }, function (error){
@@ -11,5 +11,5 @@ app.controller('CreateJokeCtrl', function($scope, $location, identity, jokes, no
             $location.path('/');
         })
     }
-});
+}]);
 

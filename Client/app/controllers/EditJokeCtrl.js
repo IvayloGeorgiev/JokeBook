@@ -1,4 +1,4 @@
-app.controller('EditJokeCtrl', function($scope, $location, $routeParams, identity, tagsService, auth, JokesResource, notifier) {
+app.controller('EditJokeCtrl', ["$scope", "$location", "$routeParams", "identity", "tagsService", "auth", "JokesResource", "notifier", function($scope, $location, $routeParams, identity, tagsService, auth, JokesResource, notifier) {
     $scope.routeId = $routeParams.id.toString();
 
     tagsService.get().then(function (tags){
@@ -24,5 +24,5 @@ app.controller('EditJokeCtrl', function($scope, $location, $routeParams, identit
             notifier.error('Edit post failed!')
         });
     }
-});
+}]);
 
