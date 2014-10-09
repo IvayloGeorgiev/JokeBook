@@ -62,12 +62,15 @@ app.config(function($routeProvider, $locationProvider) {
             templateUrl:'/partials/views/jokes-by-tag',
             controller:'JokesByTagCtrl'
         })
+        .when('/unauthorized',{
+           templateUrl:'/partials/views/unauthorized'
+        });
 });
 
 app.run(function($rootScope, $location) {
     $rootScope.$on('$routeChangeError', function(ev, current, previous, rejection) {
         if (rejection === 'not authorized') {
-            $location.path('/');
+            $location.path('/unauthorized');
         }
     })
 });

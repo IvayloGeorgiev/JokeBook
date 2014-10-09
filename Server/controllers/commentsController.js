@@ -42,6 +42,11 @@ function deleteComment(req, res) {
         return;
     }
 
+    if (req.user.roles.indexOf('admin') < 0) {
+        res.status(403).send('Operation not allowed');
+        return;
+    }
+
     Joke.findOne({_id: id},
         function (err, joke) {
             if (err) {

@@ -39,7 +39,7 @@
                 tr(ng-repeat="joke in jokes")
                     td {{ joke.title }}
                     td
-                        a(href="#/user-details/{{comment.user._id}}") {{ joke.user.username }}
+                        a(href="#/user-details/{{joke.user._id}}") {{ joke.user.username }}
                     td {{ joke.date | date: 'medium'}}
                     td
                        a(href="#/jokes-by-tag/{{joke.tags[0]}}") {{ joke.tags[0]}}
