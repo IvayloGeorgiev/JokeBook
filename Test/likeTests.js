@@ -16,14 +16,14 @@ describe('Routing', function () {
         done();
     });
 
-    describe('Comment', function () {
-        it('should not create comment with not defined Id', function (done) {
-            var comment = {
-                text:"some comments"
+    describe('Like', function () {
+        it('should not create like with not defined Id', function (done) {
+            var vote = {
+                vote:1
             }
             request(url)
-            .post('/jokes/:asd/comment')
-            .send(comment)
+            .put('/jokes/:asd/like')
+            .send(vote)
             .end(function (err, res) {
                 if (err) {
                     throw err;
@@ -35,13 +35,13 @@ describe('Routing', function () {
             });
         });
 
-        it('should not create comment without authentication', function (done) {
-            var comment = {
-                text:"some comments"
+        it('should not create like without authentication', function (done) {
+            var vote = {
+                vote:1
             }
             request(url)
-            .post('/jokes/:5436956969aa13dc0af522af/comment')
-            .send(comment)
+            .put('/jokes/:5436956969aa13dc0af522af/like')
+            .send(vote)
             .end(function (err, res) {
                 if (err) {
                     throw err;
