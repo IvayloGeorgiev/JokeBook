@@ -2,12 +2,14 @@ app.controller('JokeDetailsCtrl', function($scope, $location, $routeParams, $rou
     $scope.identity = identity;
     var joke = JokesResource.get({id:$routeParams.id.toString()}, function() {
         $scope.joke = joke;
+        console.log(identity.currentUser._id === $scope.joke.user._id);
+        console.log(auth.isAuthorizedForRole('admin') === true);
         if (identity.currentUser){
-            $scope.canEdit = ((auth.isAuthorizedForRole('admin') == true) || (identity.currentUser._id === $scope.joke.user._id));
+            $scope.canEdit = ((auth.isAuthorizedForRole('admin') === true) || (identity.currentUser._id === $scope.joke.user._id));
         }
 
         if (identity.currentUser){
-            $scope.canPost = true;
+            $scope.canVote = $scope.joke.likeIds.indexOf($scope.joke.user._id)
             //TODO add id check from server list.
         }
     }, function(){
@@ -15,6 +17,7 @@ app.controller('JokeDetailsCtrl', function($scope, $location, $routeParams, $rou
     });
 
     $scope.upvote = function upvote(){
+
         $scope.joke.likes++;
         //TODO - server and validation
     }
