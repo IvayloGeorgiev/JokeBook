@@ -11,7 +11,7 @@ function createComment(req, res) {
     }
 
     Joke.findOne({_id: id},
-        function (err, joke){
+        function (err, joke) {
             if (err) {
                 res.status(404).send('Joke with this id does not exist');
                 return;
@@ -33,6 +33,44 @@ function createComment(req, res) {
         });
 }
 
+function deleteComment(req, res) {
+    var id = req.param('id');
+    var commentId = req.param('commentId');
+
+    if (!(id && commentId)) {
+        res.status(400).send('Bad request');
+        return;
+    }
+
+    Joke.findOne({_id: id},
+        function (err, joke) {
+            if (err) {
+                res.status(404).send('Joke with this id does not exist');
+                return;
+            }
+
+            var comments = joke.comments;
+            var index = -1;
+
+            for (var i = 0; i < comments.length; i++) {
+                if (comments[i]._id === commentId) {
+                    index = i;
+                }
+            }
+
+            comments.splice(index, 1);
+            joke.save(function (err, result) {
+                if (err) {
+                    res.status(400).send(err.message);
+                }
+                else {
+                    res.send(result);
+                }
+            });
+        })
+}
+
 module.exports = {
-    createComment: createComment
+    createComment: createComment,
+    deleteComment: deleteComment
 };
