@@ -33,7 +33,11 @@
                 a(href="#/user-details/{{joke.user._id}}") {{joke.user.username}}
                 | &nbspon {{joke.date | date:'medium'}}
 
-        a.btn.btn-primary(href="#/joke/{{joke._id}}/edit", ng-show="canEdit") Edit
+        .row(ng-show="canEdit")
+            .col-md-1
+                a.btn.btn-primary(href="#/joke/{{joke._id}}/edit") Edit
+            .col-md-1
+                p.btn.btn-primary(ng-click="deleteJoke()") Delete
 
         .row
             .col-md-10
