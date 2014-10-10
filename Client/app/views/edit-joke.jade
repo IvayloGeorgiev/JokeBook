@@ -15,7 +15,7 @@
                         .col-md-10
                             textarea.form-control(id='body', placeholder="Content", ng-model='joke.body', required)
                     .form-group
-                        label.col-md-2.control-label(for="tags") Joke Tags
+                        label.col-md-2.control-label(for="tags") Joke Type
                         .col-md-10(tag-selector='')
                     .pull-right
                         button.btn.btn-primary(ng-click="edit(joke)", ng-disabled="jokeCreateForm.$invalid") Save
